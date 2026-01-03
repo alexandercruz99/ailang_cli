@@ -1,0 +1,7 @@
+[package]
+name = "ailang_cli"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ailang_core = { path = "../ailang_core" }
