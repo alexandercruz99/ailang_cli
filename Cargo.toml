@@ -1,0 +1,3 @@
+[workspace]
+members = ["ailang_core", "ailang_cli"]
+resolver = "2"

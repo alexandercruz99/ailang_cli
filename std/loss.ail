@@ -1,0 +1,18 @@
+# Standard Library: Loss Functions
+#
+# This file contains example patterns for loss functions.
+# Copy/paste the patterns you need into your train blocks.
+
+# Pattern: Cross-entropy loss
+# Input: logits [B, C], labels [B] (labels dtype)
+# Output: scalar loss
+# Usage in train block:
+#   train {
+#     loss = xent(logits, labels)
+#     steps = 100
+#     lr = 0.01
+#     batch = 32
+#   }
+# Note: xent is an alias for cross_entropy
+# Note: labels must have dtype labels (use input named "labels" or declare explicitly)
+

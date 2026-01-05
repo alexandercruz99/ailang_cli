@@ -1,0 +1,22 @@
+# Example: Inference using Standard Library patterns
+# Demonstrates classifier pattern from std/nn.ail
+
+const V = 1000
+const D = 64
+const C = 10
+const T = 128
+
+model {
+  # Input: token sequences
+  tokens [B, T]
+  
+  # Parameters: embedding matrix, classifier weights, bias
+  param E [V, D]
+  param W [D, C]
+  param b [C]
+  
+  # Classifier pattern from std/nn.ail:
+  # embed → meanpool → linear
+  logits = linear(meanpool(embedding(tokens, E)), W, b)
+}
+

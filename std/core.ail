@@ -1,0 +1,48 @@
+# Standard Library: Core Operations
+# 
+# This file contains example patterns for common operations.
+# Copy/paste the patterns you need into your .ail files.
+#
+# Note: Some operations are already aliases in the language:
+# - linear(x, W, b) → matmul(x, W) + b
+# - xent(logits, labels) → cross_entropy(logits, labels)
+# - meanpool(x) → mean_pool_time(x)
+#
+# These work directly without copying code.
+
+# Example: ReLU activation
+# Input: x [B, D] (any tensor)
+# Output: [B, D] (same shape)
+# Usage: h = relu(x)
+# (Already available as built-in)
+
+# Example: Softmax normalization
+# Input: x [B, C] (logits)
+# Output: [B, C] (probabilities)
+# Usage: probs = softmax(x)
+# (Already available as built-in)
+
+# Example: Dropout
+# Input: x [B, D], p (float probability)
+# Output: [B, D] (same shape, training-only)
+# Usage: h = dropout(x, 0.1)
+# (Already available as built-in)
+
+# Example: Concatenation
+# Input: a [B, D1], b [B, D2]
+# Output: [B, D1+D2]
+# Usage: c = concat(1, a, b)
+# Note: Currently only axis=1 is supported
+
+# Example: Slice rows
+# Input: x [N, D], start (int), len (int)
+# Output: [len, D]
+# Usage: y = slice_rows(x, 0, 10)
+# (Already available as built-in)
+
+# Example: Gather rows
+# Input: x [N, D], indices (token_ids)
+# Output: [B, D] where B is batch size from indices
+# Usage: y = gather_rows(x, indices)
+# (Already available as built-in)
+

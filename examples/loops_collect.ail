@@ -1,0 +1,8 @@
+const B = 2
+const D = 4
+
+model {
+    x [B, D]
+    param W [4, D]
+    y = for i in range(0, 4) do matmul(x, W) end
+}

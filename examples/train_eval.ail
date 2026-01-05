@@ -1,0 +1,45 @@
+const V=20
+const D=8
+const C=2
+const T=6
+
+input tokens: [B, T]
+input labels: [B]
+
+param E: [V, D]
+param W: [D, C]
+
+dataset {
+  format = "jsonl"
+  path = "examples/data/toy.jsonl"
+  tokens = "tokens"
+  labels = "labels"
+  shuffle = true
+  split = 0.8
+}
+
+forward {
+  let x = embedding(tokens, E)
+  let y = mean_pool_time(x)
+  let logits = matmul(y, W)
+  return logits
+}
+
+loss {
+  let l = cross_entropy(logits, labels)
+  return l
+}
+
+train {
+  steps = 200
+  lr = 0.1
+  batch = 4
+}
+
+eval {
+  metrics = ["loss", "accuracy"]
+  every = 20
+  split = "val"
+}
+
+

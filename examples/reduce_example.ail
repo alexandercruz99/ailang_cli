@@ -1,0 +1,15 @@
+const B = 2
+const D = 4
+
+model {
+  x [B, D]
+  
+  # Reduce loop with add
+  sum = reduce add over range(0, 3) do
+    x
+  end
+  
+  # Output
+  logits = sum
+}
+

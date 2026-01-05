@@ -1,0 +1,9 @@
+model {
+  x [2, 4]
+  logits = matmul(x, x)
+}
+
+train {
+  loss = xent(logits, x)
+  steps = 10
+}

@@ -1,0 +1,37 @@
+const V=20
+const D=8
+const C=2
+const T=6
+
+model {
+  tokens [B, T]
+  labels [B]
+
+  param E [V, D]
+  param W [D, C]
+  param b [C]
+
+  logits = linear(meanpool(embedding(tokens, E)), W, b)
+}
+
+data {
+  format = "jsonl"
+  path = "examples/data/toy.jsonl"
+  tokens = "tokens"
+  labels = "labels"
+  shuffle = true
+  split = 0.8
+}
+
+train {
+  loss = xent(logits, labels)
+  steps = 200
+  lr = 0.1
+  batch = 4
+}
+
+eval {
+  every = 20
+  metrics = [loss, acc]
+  split = "val"
+}

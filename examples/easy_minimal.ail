@@ -1,0 +1,12 @@
+const V = 20
+const D = 8
+const C = 2
+const T = 6
+
+model {
+  tokens [B, T]
+  param E [V, D]
+  param W [D, C]
+
+  logits = matmul(meanpool(embedding(tokens, E)), W)
+}

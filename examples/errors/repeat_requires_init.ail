@@ -1,0 +1,8 @@
+const B = 2
+const D = 4
+
+model {
+  x [B, D]
+  param W [D, 1]
+  y = repeat 3 times do matmul(x, W) end
+}

@@ -1,0 +1,23 @@
+const B = 2
+const D = 4
+const C = 2
+
+input x: [B, D]
+input labels: [B]
+param W: [D, C]
+
+forward {
+  let logits = matmul(x, W)
+  return logits
+}
+
+loss {
+  let l = cross_entropy(logits, labels)
+  return l
+}
+
+train {
+  steps = 30
+  lr = 0.1
+  batch = 2
+}

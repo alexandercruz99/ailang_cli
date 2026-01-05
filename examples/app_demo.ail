@@ -1,0 +1,31 @@
+const V = 20
+const D = 8
+const C = 2
+const T = 6
+
+app CounterApp {
+  state {
+    counter: int = 0
+    last_score: float = 0.0
+  }
+
+  model {
+    tokens [B, T]
+    param E [V, D]
+    param W [D, C]
+
+    logits = matmul(meanpool(embedding(tokens, E)), W)
+  }
+
+  on start {
+    counter = counter + 1
+    emit initialized
+  }
+
+  on predict {
+    last_score = logits
+    counter = counter + 1
+    emit result
+  }
+}
+

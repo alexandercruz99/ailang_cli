@@ -1,0 +1,18 @@
+const V = 20
+const D = 8
+const C = 2
+const T = 6
+
+input tokens: [B, T]
+param E: [V, D]
+param W: [D, C]
+
+forward {
+  let x = embedding(tokens, E);
+  let y = mean_pool_time(x);
+  let logits = matmul(y, W);
+  let unused_time = now();
+  return logits;
+}
+
+

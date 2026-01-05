@@ -1,0 +1,22 @@
+const B = 2
+const D = 4
+
+model {
+  x [B, D]
+  param W [D, 1]
+  
+  # Simple repeat loop (using x as init)
+  # Note: accumulator variable in body is "y"
+  y1 = repeat 3 times init x do
+    relu(y)
+  end
+  
+  # For loop (unrolled)
+  y2 = for i in range(0, 2) do
+    matmul(x, W)
+  end
+  
+  # Output
+  logits = y2
+}
+

@@ -1,0 +1,11 @@
+const B = 2
+const D = 4
+
+model {
+  x [B, D]
+  param W [D, 1]
+  
+  h = for i in range(0, 3) do matmul(x, W) end
+  logits = meanpool(h)
+}
+

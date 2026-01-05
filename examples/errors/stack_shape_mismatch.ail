@@ -1,0 +1,11 @@
+const B = 2
+const D = 4
+
+model {
+  x [B, D]
+  param W1 [D, 2]
+  param W2 [D, 3]
+  y = for i in range(0, 2) do 
+    if i == 0 then matmul(x, W1) else matmul(x, W2) end
+  end
+}

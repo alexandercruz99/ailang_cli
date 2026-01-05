@@ -1,0 +1,32 @@
+# Standard Library: Neural Network Patterns
+#
+# This file contains example patterns for common neural network architectures.
+# Copy/paste the patterns you need into your .ail files.
+
+# Pattern: Embedding layer
+# Input: tokens [B, T] (token_ids dtype), E [V, D] (embedding matrix)
+# Output: [B, T, D]
+# Usage:
+#   h = embedding(tokens, E)
+# Note: tokens must have dtype token_ids (use input named "tokens" or declare explicitly)
+
+# Pattern: Classifier (embed → meanpool → linear)
+# Input: tokens [B, T] (token_ids), E [V, D], W [D, C], b [C]
+# Output: logits [B, C]
+# Usage:
+#   h = embedding(tokens, E)      # [B, T, D]
+#   h = meanpool(h)               # [B, D]
+#   logits = linear(h, W, b)      # [B, C]
+# Or as a single expression:
+#   logits = linear(meanpool(embedding(tokens, E)), W, b)
+
+# Pattern: 2-layer MLP
+# Input: x [B, D_in], W1 [D_in, D_hidden], b1 [D_hidden], W2 [D_hidden, D_out], b2 [D_out]
+# Output: [B, D_out]
+# Usage:
+#   h1 = linear(x, W1, b1)        # [B, D_hidden]
+#   h1 = relu(h1)                 # [B, D_hidden]
+#   out = linear(h1, W2, b2)     # [B, D_out]
+# Or as nested expressions:
+#   out = linear(relu(linear(x, W1, b1)), W2, b2)
+

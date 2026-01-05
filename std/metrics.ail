@@ -1,0 +1,31 @@
+# Standard Library: Evaluation Metrics
+#
+# This file documents evaluation metrics available in eval blocks.
+# Metrics are computed by the CLI, not as graph operations.
+
+# Pattern: Accuracy metric
+# Usage in eval block:
+#   eval {
+#     every = 20
+#     metrics = [loss, acc]
+#     split = "val"
+#   }
+# Note: "acc" is an alias for "accuracy"
+# The CLI computes accuracy by comparing predicted class (argmax of logits) to labels.
+
+# Pattern: Loss metric
+# Usage in eval block:
+#   eval {
+#     every = 10
+#     metrics = [loss]
+#     split = "train"
+#   }
+# The CLI computes loss using the same loss function defined in the train block.
+
+# Available metrics:
+# - loss: Training loss value (scalar)
+# - acc / accuracy: Classification accuracy (0-1, computed as mean(pred == labels))
+
+# Note: Metrics are not graph operations. They are computed by the CLI during evaluation.
+# You cannot use metrics in model computations.
+
