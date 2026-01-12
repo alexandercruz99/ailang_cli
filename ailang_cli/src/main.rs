@@ -1616,6 +1616,15 @@ fn run_ail_file(
                 println!("]");
             }
 
+            // Output EMIT format for Trader integration
+            // If output is a scalar, emit it as a DesiredTarget
+            if output.num_elements() == 1 {
+                let scalar_value = output.scalar();
+                // Create a simple DesiredTarget JSON
+                // This is a minimal implementation - strategies can be enhanced to output more structured data
+                println!("EMIT {{\"product_id\":\"BTC-USD\",\"target_position_notional_usd\":{},\"urgency\":\"maker_only\",\"max_slippage_bps\":10,\"tag\":\"demo\"}}", scalar_value);
+            }
+
             // Save trace if requested
             if let Some(trace_path) = trace_file {
                 match trace.to_json() {
