@@ -2,6 +2,8 @@ mod context_map;
 mod output_convert;
 
 use ailang_core::frontend::{lexer::Lexer, lower::lower, parser::Parser};
+use ailang_core::forward_selected::execute_forward_selected_with_capabilities;
+use ailang_core::Capabilities;
 use context_map::{build_inputs, StrategyContextTick};
 use output_convert::tensors_to_desired_targets;
 use serde::{Deserialize, Serialize};
